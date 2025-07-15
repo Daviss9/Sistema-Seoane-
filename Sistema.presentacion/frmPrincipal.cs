@@ -124,5 +124,13 @@ namespace Sistema.presentacion
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Formularios.frmRol frm = new Formularios.frmRol();
+            //Formulario Padre va a ser frm Principal
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }
