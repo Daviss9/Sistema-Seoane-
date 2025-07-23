@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -94,6 +95,7 @@ namespace Sistema.Negocio
                     return Datos.Actualizar(Obj);
                 }
             }
+            
 
         }
         public static string Eliminar(int Id)

@@ -601,5 +601,11 @@ namespace Sistema.presentacion.Formularios
                 MessageBox.Show(ex.Message + " - " + ex.StackTrace);
             }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Limpiar();
+            tabGeneral.SelectedIndex = 0; //Vuelve a la pestaña de listado
+        }
     }
 }

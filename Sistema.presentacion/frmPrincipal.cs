@@ -132,5 +132,13 @@ namespace Sistema.presentacion
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Formularios.frmUsuario frm = new Formularios.frmUsuario();
+            //Formulario Padre va a ser frm Principal
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }
