@@ -79,6 +79,43 @@ namespace Sistema.Datos
                 if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
             }
         }
+        public DataTable Login(string Email,string Clave)
+        {
+            SqlDataReader Resultado;
+            //Generamos la tabla temporal
+            DataTable Tabla = new DataTable();
+            //Genero mi variable de conexion
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                //Instacio mi conexion
+                SqlCon = Conexion.getInstancia().CrearConexion();
+                // Instancio mi objeto SP
+                SqlCommand Comando = new SqlCommand("usuario_login", SqlCon);
+                //Que tipo de objeto estoy usando
+                Comando.CommandType = CommandType.StoredProcedure;
+                //Agrego los parametros VALOR String
+                Comando.Parameters.Add("@email", SqlDbType.VarChar).Value = Email;
+                Comando.Parameters.Add("@clave", SqlDbType.VarChar).Value = Clave;
+                //Abrimos la conexion
+                SqlCon.Open();
+                //Ejecutamos el SP
+                Resultado = Comando.ExecuteReader();
+                //Almacenamos los registros devueltos en tabla temporal Tabla
+                Tabla.Load(Resultado);
+                return Tabla;
+            }
+            catch (Exception ex)
+            {
+                //Si no hay ninguna coincidencia no retorna un nulo
+                return null;
+                throw ex;
+            }
+            finally
+            {
+                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
+            }
+        }
         public string Existe(string Valor)
         {
             string Rpta = "";
