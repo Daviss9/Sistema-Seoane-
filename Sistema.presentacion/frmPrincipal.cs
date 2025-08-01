@@ -115,10 +115,60 @@ namespace Sistema.presentacion
             frm.MdiParent = this;
             frm.Show();
         }
+        private void AccesoRoles()
+        {
+            if (this.Rol.Equals("ADMINISTRADOR"))
+            {
+                //Opciones de Administrador
+                mnuAlmacen.Enabled = true;
+                mnuIngreso.Enabled = true;
+                mnuVenta.Enabled = true;
+                mnuAcceso.Enabled = true;
+                mnuConsulta.Enabled = true;
+            }
+            else 
+            {
+                if (this.Rol.Equals("VENDEDOR"))
+                {
+                    mnuAlmacen.Enabled = false;
+                    mnuIngreso.Enabled = false;
+                    mnuVenta.Enabled = true;
+                    mnuAcceso.Enabled = false;
+                    mnuConsulta.Enabled = true;
+                }
+                else
+                {
+                    if (this.Rol.Equals("ALMACENERO"))
+                    {
+                        mnuAlmacen.Enabled = true;
+                        mnuIngreso.Enabled = true;
+                        mnuVenta.Enabled = false;
+                        mnuAcceso.Enabled = false;
+                        mnuConsulta.Enabled = true;
+                    }
+                    else
+                    {
+                        //Si el Rol no es ninguno de los anteriores, deshabilitar todo
+                        mnuAlmacen.Enabled = false;
+                        mnuIngreso.Enabled = false;
+                        mnuVenta.Enabled = false;
+                        mnuAcceso.Enabled = false;
+                        mnuConsulta.Enabled = false;
+                    }
+                }
+            }
+        }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            stBarraInferior.Text = "Desarrollado por: Seoane Software - Usuario: "
+                + this.Nombre;
+            //Enviar mensaje de Bienvenida
+            MessageBox.Show("Bienvenido " + this.Nombre + " al Sistema de Ventas", 
+                "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            //Accesos de Roles
+            this.AccesoRoles();
         }
 
         private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -140,6 +190,25 @@ namespace Sistema.presentacion
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Formularios.frmUsuario frm = new Formularios.frmUsuario();
+            //Formulario Padre va a ser frm Principal
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void mnuSalir_Click(object sender, EventArgs e)
+        {
+            DialogResult Opcion;
+            Opcion = MessageBox.Show("¿Está seguro de salir del Sistema?",
+                "Salir del Sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (Opcion == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void smnuProveedores_Click(object sender, EventArgs e)
+        {
+            Formularios.frmProveedores frm = new Formularios.frmProveedores();
             //Formulario Padre va a ser frm Principal
             frm.MdiParent = this;
             frm.Show();
