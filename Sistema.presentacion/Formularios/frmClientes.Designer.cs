@@ -1,6 +1,6 @@
 ﻿namespace Sistema.presentacion.Formularios
 {
-    partial class frmProveedores
+    partial class frmClientes
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -58,8 +60,6 @@
             this.tabMantenimiento = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).BeginInit();
             this.tabGeneral.SuspendLayout();
@@ -94,6 +94,22 @@
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "(*) Campos Obligatorios";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(107, 241);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(405, 20);
+            this.txtEmail.TabIndex = 20;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 244);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Email  (*)";
             // 
             // txtTelefono
             // 
@@ -351,14 +367,14 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 38);
+            this.label1.Size = new System.Drawing.Size(139, 38);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Proveedores";
+            this.label1.Text = "Clientes";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Blue;
+            this.panel1.BackColor = System.Drawing.Color.ForestGreen;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -366,32 +382,16 @@
             this.panel1.Size = new System.Drawing.Size(1242, 53);
             this.panel1.TabIndex = 6;
             // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(107, 241);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(405, 20);
-            this.txtEmail.TabIndex = 20;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 244);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 13);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Email  (*)";
-            // 
-            // frmProveedores
+            // frmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1242, 586);
             this.Controls.Add(this.tabGeneral);
             this.Controls.Add(this.panel1);
-            this.Name = "frmProveedores";
-            this.Text = "Proveedores";
-            this.Load += new System.EventHandler(this.frmProveedores_Load);
+            this.Name = "frmClientes";
+            this.Text = "Clientes";
+            this.Load += new System.EventHandler(this.frmClientes_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorIcono)).EndInit();

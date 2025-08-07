@@ -213,5 +213,13 @@ namespace Sistema.presentacion
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void smnuCliente_Click(object sender, EventArgs e)
+        {
+            Formularios.frmClientes frm = new Formularios.frmClientes();
+            //Formulario Padre va a ser frm Principal   
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

@@ -63,5 +63,48 @@ namespace Sistema.presentacion.Formularios
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            GenerarNumero();
+        }
+
+        List<Button> botones = new List<Button>();
+
+        private void GenerarNumero()
+        {
+           botones = new List<Button> {button1, button2, button3, button4, button5, button6, button7, button8, button9,button10};
+           List<int> numAleatorios = Enumerable.Range(0, 10).ToList();
+           Random rand = new Random();
+           numAleatorios = numAleatorios.OrderBy(x => rand.Next()).ToList();
+
+            for (int i = 0; i < botones.Count; i++)
+            {
+                botones[i].Text = numAleatorios[i].ToString();
+            }
+
+            foreach (Button boton in botones)
+            {
+                boton.Click += BotonNumerico_Click;
+            }
+        }
+        private void BotonNumerico_Click(object sender, EventArgs e)
+        {
+            Button boton = (Button)sender;
+            txtClave.Text += boton.Text;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtClave.Clear();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (txtClave.Text.Length > 0)
+            {
+                txtClave.Text = txtClave.Text.Substring(0, txtClave.Text.Length - 1);
+            }
+        }
     }
 }

@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Sistema.presentacion.Formularios
 {
-    public partial class frmProveedores : Form
+    public partial class frmClientes : Form
     {
         private string NombreAnt;
-        public frmProveedores()
+        public frmClientes()
         {
             InitializeComponent();
         }
@@ -46,7 +46,7 @@ namespace Sistema.presentacion.Formularios
             try
             {
                 //Carga los datos en la grilla
-                dgvListado.DataSource = NPersona.ListarProveedores();
+                dgvListado.DataSource = NPersona.ListarClientes();
                 //Formatea la grilla
                 this.Formato();
                 // Cuenta los registros y muestra en lblTotal
@@ -63,7 +63,7 @@ namespace Sistema.presentacion.Formularios
             try
             {
                 //Carga los datos en la grilla
-                dgvListado.DataSource = NPersona.BuscarProvedores(txtBuscar.Text);
+                dgvListado.DataSource = NPersona.BuscarClientes(txtBuscar.Text);
                 //Formatea la grilla
                 this.Formato();
                 // Cuenta los registros y muestra en lblTotal
@@ -155,10 +155,7 @@ namespace Sistema.presentacion.Formularios
             btnInsertar.Visible = true; //Boton Insertar
 
         }
-        private void frmProveedores_Load(object sender, EventArgs e)
-        {
-               this.Listar(); //Llama al metodo Listar
-        }
+        
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -176,7 +173,7 @@ namespace Sistema.presentacion.Formularios
                     string Rpta = "";
                     Rpta = NPersona.Insertar(
                         //Selected Value devuelve el idCategoria Seleccionado
-                        "PROVEEDOR",
+                        "CLIENTE",
                         txtNombre.Text.Trim(),
                         cboTipoDoc.Text, // DNI o RUC
                         txtNroDoc.Text.Trim(),
@@ -246,7 +243,7 @@ namespace Sistema.presentacion.Formularios
                     string Rpta = "";
                     Rpta = NPersona.Actualizar(
                         Convert.ToInt32(txtId.Text),
-                        "PROVEEDOR",
+                        "CLIENTE",
                         //Selected Value devuelve el idCategoria Seleccionado
                         this.NombreAnt,
                         txtNombre.Text.Trim(),
@@ -362,6 +359,10 @@ namespace Sistema.presentacion.Formularios
             }
             chkSeleccionar.Checked = false;
         }
-    
+
+        private void frmClientes_Load(object sender, EventArgs e)
+        {
+            this.Listar(); //Llama al metodo Listar
+        }
     }
 }

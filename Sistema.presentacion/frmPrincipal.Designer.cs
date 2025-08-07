@@ -36,6 +36,9 @@
             this.articulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuIngreso = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVenta = new System.Windows.Forms.ToolStripMenuItem();
+            this.smnuProveedores = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smnuCliente = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuConsulta = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAcceso = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,8 +72,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.stBarraInferior = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.smnuProveedores = new System.Windows.Forms.ToolStripMenuItem();
-            this.ventasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -128,10 +129,31 @@
             // 
             this.mnuVenta.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.smnuProveedores,
-            this.ventasToolStripMenuItem});
+            this.ventasToolStripMenuItem,
+            this.smnuCliente});
             this.mnuVenta.Name = "mnuVenta";
             this.mnuVenta.Size = new System.Drawing.Size(53, 20);
             this.mnuVenta.Text = "Ventas";
+            // 
+            // smnuProveedores
+            // 
+            this.smnuProveedores.Name = "smnuProveedores";
+            this.smnuProveedores.Size = new System.Drawing.Size(180, 22);
+            this.smnuProveedores.Text = "Proveedores";
+            this.smnuProveedores.Click += new System.EventHandler(this.smnuProveedores_Click);
+            // 
+            // ventasToolStripMenuItem
+            // 
+            this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
+            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ventasToolStripMenuItem.Text = "Ventas";
+            // 
+            // smnuCliente
+            // 
+            this.smnuCliente.Name = "smnuCliente";
+            this.smnuCliente.Size = new System.Drawing.Size(180, 22);
+            this.smnuCliente.Text = "Clientes";
+            this.smnuCliente.Click += new System.EventHandler(this.smnuCliente_Click);
             // 
             // mnuConsulta
             // 
@@ -398,19 +420,6 @@
             this.stBarraInferior.Size = new System.Drawing.Size(42, 17);
             this.stBarraInferior.Text = "Estado";
             // 
-            // smnuProveedores
-            // 
-            this.smnuProveedores.Name = "smnuProveedores";
-            this.smnuProveedores.Size = new System.Drawing.Size(180, 22);
-            this.smnuProveedores.Text = "Proveedores";
-            this.smnuProveedores.Click += new System.EventHandler(this.smnuProveedores_Click);
-            // 
-            // ventasToolStripMenuItem
-            // 
-            this.ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            this.ventasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ventasToolStripMenuItem.Text = "Ventas";
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,6 +488,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
         private System.Windows.Forms.ToolStripMenuItem smnuProveedores;
         private System.Windows.Forms.ToolStripMenuItem ventasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smnuCliente;
     }
 }
 

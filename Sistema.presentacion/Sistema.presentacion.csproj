@@ -106,6 +106,12 @@
     <Compile Include="Formularios\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmClientes.Designer.cs">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmClientes.resx">
+      <DependentUpon>frmClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmProveedores.resx">
       <DependentUpon>frmProveedores.cs</DependentUpon>
@@ -200,6 +209,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\limpiar_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\borrar_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SkiaSharp.NativeAssets.macOS.2.88.8\build\net462\SkiaSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.8\build\net462\SkiaSharp.NativeAssets.macOS.targets')" />

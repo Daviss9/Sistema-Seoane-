@@ -45,7 +45,7 @@ namespace Sistema.Negocio
         
         public static string Insertar(
             string TipoPersona, string Nombre, string TipoDocumento, string NumDocumento,
-            string Direccion, string Telefono, string Email, string Clave)
+            string Direccion, string Telefono, string Email)
         {
             DPersona Datos = new DPersona();
             //Usuario validamos por el Email

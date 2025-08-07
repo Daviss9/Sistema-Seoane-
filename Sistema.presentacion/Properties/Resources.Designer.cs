@@ -63,6 +63,26 @@ namespace Sistema.presentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap back_32 {
+            get {
+                object obj = ResourceManager.GetObject("back_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap borrar_24 {
+            get {
+                object obj = ResourceManager.GetObject("borrar_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancelar {
             get {
                 object obj = ResourceManager.GetObject("cancelar", resourceCulture);
@@ -76,6 +96,16 @@ namespace Sistema.presentacion.Properties {
         internal static System.Drawing.Bitmap candado_login {
             get {
                 object obj = ResourceManager.GetObject("candado_login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap limpiar_24 {
+            get {
+                object obj = ResourceManager.GetObject("limpiar_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
