@@ -221,5 +221,12 @@ namespace Sistema.presentacion
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void smnuIngreso_Click(object sender, EventArgs e)
+        {
+            Formularios.frmIngreso frm = new Formularios.frmIngreso();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }
