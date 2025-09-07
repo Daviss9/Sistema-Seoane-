@@ -103,6 +103,16 @@ namespace Sistema.presentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cerrar_32 {
+            get {
+                object obj = ResourceManager.GetObject("cerrar_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap limpiar_24 {
             get {
                 object obj = ResourceManager.GetObject("limpiar_24", resourceCulture);

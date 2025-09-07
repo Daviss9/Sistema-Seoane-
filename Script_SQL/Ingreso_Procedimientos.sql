@@ -32,7 +32,7 @@ update ingreso set estado='Anulado'
 where idingreso=@idingreso
 go
 
--- Variable tipo Tabla
+
 create type types_detalle_ingreso as table
 (
 	idarticulo int,
@@ -53,7 +53,7 @@ create proc ingreso_insertar
 @num_comprobante varchar(10),
 @impuesto decimal(4,2),
 @total decimal(11,2),
-@detalle types_detalle_ingreso READONLY
+@detalle type_detalle_ingreso READONLY
 as
 begin
 	--Insertamos en la cabecera

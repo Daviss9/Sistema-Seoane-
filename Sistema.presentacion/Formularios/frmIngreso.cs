@@ -46,6 +46,28 @@ namespace Sistema.presentacion.Formularios
             dgvListado.Columns[11].HeaderText = "ESTADO";
 
         }
+
+        private void FormatoArticulo()
+        {
+            dgvArticulo.Columns[0].Visible = false; //IdArticulo
+            dgvArticulo.Columns[1].Visible = false; //IdCategoria
+            dgvArticulo.Columns[2].Width = 100;
+            dgvArticulo.Columns[2].HeaderText = "CATEGORIA";
+            dgvArticulo.Columns[3].Width = 100;
+            dgvArticulo.Columns[3].HeaderText = "CODIGO";
+            dgvArticulo.Columns[4].Width = 150;
+            dgvArticulo.Columns[4].HeaderText = "NOMBRE";
+            dgvArticulo.Columns[5].Width = 100;
+            dgvArticulo.Columns[5].HeaderText = "PRECIO VENTA";
+            dgvArticulo.Columns[6].Width = 60;
+            dgvArticulo.Columns[6].HeaderText = "STOCK";
+            dgvArticulo.Columns[7].Width = 200;
+            dgvArticulo.Columns[7].HeaderText = "DESCRIPCION";
+            dgvArticulo.Columns[8].Visible = false;
+            dgvArticulo.Columns[9].Width = 70;
+            dgvArticulo.Columns[9].HeaderText = "ESTADO";
+
+        }
         private void Listar()
         {
             try
@@ -159,6 +181,134 @@ namespace Sistema.presentacion.Formularios
             vista.ShowDialog(); //Muestra el formulario de proveedor como dialogo
             txtIdProveedor.Text = Variables.IdProveedor.ToString();
             txtNombreProveedor.Text = Variables.NombreProveedor;
+        }
+        private void CalcularTotales()
+        {
+            decimal Total = 0;
+            decimal Subtotal = 0;
+            //Recorrer el DtDetalle
+            foreach (DataRow FilaTemp in dtDetalle.Rows)
+            {
+                //Total es un acumulador +
+                Total = Total + Convert.ToDecimal(FilaTemp["importe"]);
+            }
+            Subtotal = Total / (1 + Convert.ToDecimal(txtIgv.Text));
+            txtTotal.Text = Total.ToString("#0.00#"); //Formato 125.00
+            txtSubTotal.Text = Subtotal.ToString("#0.00#");
+            txtImpuesto.Text = (Total - Subtotal).ToString("#0.00#");
+        }
+
+        private void AgregarDetalle(
+            int IdArticulo,
+            string Codigo,
+            string Nombre,
+            decimal Precio
+            )
+        {
+            //Declaro una variable booleana para verificar si el articulo ya existe en el detalle
+            bool Agregar = true;
+            //Recorre todas las filas del detalle buscando el articulo
+            foreach (DataRow FilaTemp in dtDetalle.Rows)
+            {
+                //Si el articulo ya existe en el detalle
+                if (Convert.ToInt32(FilaTemp["idarticulo"]) == IdArticulo)
+                {
+                    Agregar = false; //No se agrega el articulo
+                    this.MensajeError("El articulo ya fue agregado al detalle");
+                }
+            }
+            if (Agregar) // Agregar TRUE
+            {
+                DataRow Fila = dtDetalle.NewRow(); //Crea una nueva fila
+                Fila["idarticulo"] = IdArticulo;
+                Fila["codigo"] = Codigo;
+                Fila["articulo"] = Nombre;
+                Fila["cantidad"] = 1;
+                Fila["precio"] = Precio;
+                Fila["importe"] = Precio;
+                this.dtDetalle.Rows.Add(Fila); //Agrega la fila a la tabla
+                this.CalcularTotales(); //Actualiza los totales
+            }
+            
+        }
+        private void txtCodigo_KeyDown(object sender, KeyEventArgs e)
+        {
+            try 
+            {
+                //Presiona la tecla Enter
+                if(e.KeyCode == Keys.Enter)
+                {
+                    DataTable tabla = new DataTable();
+                    tabla = NArticulo.BuscarCodigo(txtCodigo.Text.Trim());
+                    if(tabla.Rows.Count <= 0)
+                    {
+                        MensajeError("No existe el articulo con ese codigo");
+                    }
+                    else
+                    { 
+                        this.AgregarDetalle(
+                            Convert.ToInt32(tabla.Rows[0][0]), //IdArticulo 
+                            Convert.ToString(tabla.Rows[0][1]), //Codigo
+                            Convert.ToString(tabla.Rows[0][2]), //Nombre
+                            Convert.ToDecimal(tabla.Rows[0][3])  //PrecioVenta
+                            );
+                    }
+                    txtCodigo.Clear();
+                    txtCodigo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MensajeError(ex.Message);
+            }
+        }
+
+        private void btnBuscarArticulo_Click(object sender, EventArgs e)
+        {
+            pnlArticulo.Visible = true; //Muestra el panel de articulo
+        }
+
+        private void btnCerrarArticulo_Click(object sender, EventArgs e)
+        {
+            pnlArticulo.Visible = false; //Oculta el panel de articulo
+        }
+
+        private void btnBusquedaArticulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dgvArticulo.DataSource = NArticulo.Buscar(txtArticuloNombre.Text.Trim());
+                this.FormatoArticulo();
+            }
+            catch(Exception ex)
+            {
+                MensajeError(ex.Message);
+            }
+        }
+
+        private void dgvArticulo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int IdArticulo;
+            string Codigo, Nombre;
+            decimal Precio;
+            IdArticulo = Convert.ToInt32(dgvArticulo.CurrentRow.Cells["ID"].Value);
+            Codigo = Convert.ToString(dgvArticulo.CurrentRow.Cells["Codigo"].Value);
+            Nombre = Convert.ToString(dgvArticulo.CurrentRow.Cells["Nombre"].Value);
+            Precio = Convert.ToDecimal(dgvArticulo.CurrentRow.Cells["Precio_Venta"].Value);
+            //Invoco a funcion AgregarDetalle
+            this.AgregarDetalle(IdArticulo, Codigo, Nombre, Precio);
+            pnlArticulo.Visible = false; //Oculta el panel de articulo
+            txtArticuloNombre.Clear();
+        }
+
+        private void dgvDetalle_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //Cuando se termina de editar una celda
+            DataRow Fila = (DataRow)dtDetalle.Rows[e.RowIndex];
+            decimal Precio = Convert.ToDecimal(Fila["precio"]);
+            int Cantidad = Convert.ToInt32(Fila["cantidad"]);
+            Fila["importe"] = Precio * Cantidad; //Actualiza el importe
+            this.CalcularTotales(); //Actualiza los totales
         }
     }
 }

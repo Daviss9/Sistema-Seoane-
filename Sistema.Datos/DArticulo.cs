@@ -79,6 +79,40 @@ namespace Sistema.Datos
             }
         }
 
+        public DataTable BuscarCodigo(string Valor)
+        {
+            SqlDataReader Resultado;
+            //Generamos la tabla temporal
+            DataTable Tabla = new DataTable();
+            //Genero mi variable de conexion
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+                //Instacio mi conexion
+                SqlCon = Conexion.getInstancia().CrearConexion();
+                // Instancio mi objeto SP
+                SqlCommand Comando = new SqlCommand("articulo_buscar_codigo", SqlCon);
+                //Que tipo de objeto estoy usando
+                Comando.CommandType = CommandType.StoredProcedure;
+                //Agrego los parametros VALOR String
+                Comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = Valor;
+                //Abrimos la conexion
+                SqlCon.Open();
+                //Ejecutamos el SP
+                Resultado = Comando.ExecuteReader();
+                //Almacenamos los registros devueltos en tabla temporal Tabla
+                Tabla.Load(Resultado);
+                return Tabla;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
+            }
+        }
         public string Existe(string Valor)
         {
             string Rpta = "";
